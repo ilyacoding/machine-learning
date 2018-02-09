@@ -6,7 +6,7 @@ K = 7
 WIDTH = 1200
 HEIGHT = 900
 
-data = DOTS.times.map { Point.new(rand(WIDTH), rand(HEIGHT)) }
+data = Array.new(DOTS) { Point.new(rand(WIDTH), rand(HEIGHT)) }
 
 clusters = kmeans(data, K)
 
