@@ -23,4 +23,16 @@ class Cluster
     @center = Point.new(xa, ya)
     old_center.dist_to(center)
   end
+
+  def clear_point
+    @points = []
+  end
+
+  def max_distance_point
+    points.map { |point| [point, @center.dist_to(point)] }.to_h.max_by { |_, v| v } || default_point
+  end
+
+  def default_point
+    [Point.new(0,0), 0]
+  end
 end

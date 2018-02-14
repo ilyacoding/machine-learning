@@ -1,16 +1,23 @@
-require_relative 'algo.rb'
 require 'ruby2d'
+require 'pry'
+require_relative 'algo.rb'
 
-DOTS = 30_000
-K = 7
 WIDTH = 1200
 HEIGHT = 900
 
+DOTS = 20_000
+K = 11
+
 data = Array.new(DOTS) { Point.new(rand(WIDTH), rand(HEIGHT)) }
 
-clusters = kmeans(data, K)
+# Maximin
+clusters = initialize_dynamic_kmeans(data, K)
+clusters = dynamic_kmeans(data, clusters)
 
-set(height: HEIGHT, width: WIDTH)
+# K-means
+# clusters = kmeans(data, K)
+
+set(height: HEIGHT + 10, width: WIDTH + 10)
 
 clusters.each do |cluster|
   colour = random_color
